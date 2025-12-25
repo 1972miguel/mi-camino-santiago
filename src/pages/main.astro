@@ -1,18 +1,11 @@
 ---
 // src/pages/main.astro
 import MainLayout from '../layouts/MainLayout.astro';
+import NavBar from '../components/NavBar.astro';
 ---
 
 <MainLayout title="Diario del Camino">
-  <header class="navbar">
-    <div class="container">
-      <a href="/main" class="logo">Camino 2026</a>
-      <nav>
-        <a href="/blog" class="nav-link">Blog</a>
-        <a href="/gallery" class="nav-link">Galería</a>
-      </nav>
-    </div>
-  </header>
+ <NavBar client:visible />
 
   <section class="timeline-section">
     <div class="timeline-container">

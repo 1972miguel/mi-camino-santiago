@@ -1,0 +1,91 @@
+---
+// src/pages/blog/index.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import NavBar from '../../components/NavBar.astro';
+
+// Obtenemos todos los posts de la carpeta blog
+const posts = await Astro.glob('./*.md');
+posts.sort((a, b) => {
+  const ta = new Date(a.frontmatter.date).getTime() || 0;
+  const tb = new Date(b.frontmatter.date).getTime() || 0;
+  return tb - ta; // newest first
+});
+---
+
+<MainLayout title="Blog del Camino">
+  <NavBar client:visible />
+  
+  <section class="blog-section">
+    <div class="container">
+      <h1>Diario del Camino</h1>
+      <p class="intro">Nuestras experiencias día a día</p>
+
+      <div class="posts-list">
+        {posts.map(post => (
+          <a href={post.url} class="post-card">
+            <h2>{post.frontmatter.title}</h2>
+            <p class="date">{post.frontmatter.dateFormatted}</p>
+            <p class="excerpt">{post.frontmatter.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .blog-section {
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--dark-green);
+    margin-bottom: 4rem;
+  }
+
+  .posts-list {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .post-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border-left: 6px solid var(--light-green);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  }
+
+  .post-card h2 {
+    color: var(--dark-green);
+    margin-bottom: 0.8rem;
+    font-size: 1.8rem;
+  }
+
+  .date {
+    color: var(--dark-green);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .excerpt {
+    color: #444;
+    line-height: 1.7;
+  }
+</style>
