@@ -5,19 +5,34 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+// Importamos el CSS global de forma correcta (método recomendado por Astro)
+import '../styles/global.css';
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Diario personal del Camino de Santiago Portugués desde Tuy en 6 etapas - Enero 2026" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Diario del Camino de Santiago desde Tuy en 5 etapas - 2026" />
-    <title>{title} | Nuestro Camino de Santiago</title>
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/styles/global.css" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title} | Nuestro Camino de Santiago 2026</title>
+    
+    <!-- Favicon (cámbialo cuando tengas uno propio) -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
+
   <body>
+    <!-- Todo el contenido de las páginas que usen este layout va aquí -->
     <slot />
+
+    <!-- Opcional: un footer simple si quieres -->
+    <!--
+    <footer style="text-align: center; padding: 3rem; background: var(--dark-green); color: white; margin-top: 5rem;">
+      <p>Hecho con ❤️ por [Tu Nombre] y [Nombre de tu amiga] · Camino de Santiago 2026</p>
+    </footer>
+    -->
   </body>
 </html>
