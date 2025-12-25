@@ -1,0 +1,197 @@
+---
+// src/pages/main.astro
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Diario del Camino">
+  <header class="navbar">
+    <div class="container">
+      <a href="/main" class="logo">Camino 2026</a>
+      <nav>
+        <a href="/blog" class="nav-link">Blog</a>
+        <a href="/gallery" class="nav-link">Galería</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="timeline-section">
+    <div class="container">
+      <h1>Nuestra ruta en 6 etapas</h1>
+      <p class="intro">Del 2 al 7 de enero de 2026 · Tuy → Santiago de Compostela</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2 Ene</div>
+          <div class="timeline-content">
+            <h3>Etapa 1: Tuy → O Porriño</h3>
+            <p>Inicio oficial del Camino Portugués. Salida desde la Catedral de Tuy.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">3 Ene</div>
+          <div class="timeline-content">
+            <h3>Etapa 2: O Porriño → Redondela</h3>
+            <p>Etapa exigente con subidas, pero vistas increíbles de la ría de Vigo.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">4 Ene</div>
+          <div class="timeline-content">
+            <h3>Etapa 3: Redondela → Pontevedra</h3>
+            <p>Puente romano de Pontesampaio y llegada al precioso casco histórico.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">5 Ene</div>
+          <div class="timeline-content">
+            <h3>Etapa 4: Pontevedra → Caldas de Reis</h3>
+            <p>Bosques encantados y relax en las termas al final del día.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">6 Ene</div>
+          <div class="timeline-content">
+            <h3>Etapa 5: Caldas de Reis → Padrón</h3>
+            <p>Campos, aldeas y la leyenda del pedrón donde llegó la barca de Santiago.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">7 Ene</div>
+          <div class="timeline-content">
+            <h3>Etapa 6: Padrón → Santiago de Compostela</h3>
+            <p>¡Llegada emocionante a la Plaza del Obradoiro y abrazo al Santo!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</MainLayout>
+
+<!-- Todo el <style> se mantiene igual que antes -->
+<style>
+  /* ... (el mismo CSS del timeline que te di antes, no lo cambies) */
+  .navbar {
+    background: var(--dark-green);
+    color: var(--white);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .nav-link {
+    color: var(--white);
+    margin-left: 2rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.3s;
+  }
+
+  .nav-link:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .timeline-section {
+    padding: 4rem 0;
+    background: var(--white);
+  }
+
+  .timeline-section h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--dark-green);
+    margin-bottom: 4rem;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: var(--light-green);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+  }
+
+  .timeline-item {
+    padding: 1rem 3rem;
+    position: relative;
+    width: 50%;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-item:nth-child(odd) {
+    left: 0;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 50%;
+  }
+
+  .timeline-date {
+    background: var(--dark-green);
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    right: -40px;
+    top: 20px;
+    z-index: 1;
+  }
+
+  .timeline-item:nth-child(even) .timeline-date {
+    left: -40px;
+  }
+
+  .timeline-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--light-green);
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    border-left: none;
+    border-right: 5px solid var(--light-green);
+  }
+</style>
