@@ -1,0 +1,76 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import NavBar from '../components/NavBar.astro';
+
+// 1. Obtenemos todos los posts (md y mdx)
+const posts = await Astro.glob('./blog/*.{md,mdx}');
+
+// 2. Extraemos todas las imágenes de todos los posts en un solo array
+const allImages = posts.map(post => {
+  return post.frontmatter.gallery || []; // Si el post tiene galería, la trae
+}).flat(); // Aplana los arrays para tener una lista limpia de fotos
+---
+
+<MainLayout title="Galería del Camino">
+  <NavBar client:visible />
+
+  <section class="gallery-section">
+    <h1>Galería Fotográfica</h1>
+    <p>Todos los momentos de nuestra aventura</p>
+
+    <div class="grid-gallery">
+      {allImages.map(img => (
+        <a href={img.src} data-fslightbox="global-gallery" class="gallery-item">
+          <img src={img.src} alt={img.alt} loading="lazy" />
+          <div class="caption">
+            <span>{img.desc}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</MainLayout>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.min.js"></script>
+
+<style>
+  .gallery-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+  
+  .grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: block;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.1); }
+
+  .caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    padding: 1rem;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .caption { opacity: 1; }
+</style>

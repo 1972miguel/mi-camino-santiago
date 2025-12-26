@@ -4,7 +4,24 @@ title: "Etapa 1: Tuy → O Porriño"
 date: 2026-01-02
 dateFormatted: "2 de enero de 2026"
 description: "El gran día llegó. Salimos de la Catedral de Tuy con mucha emoción y los primeros kilómetros del Camino Portugués."
+# Lista de imágenes para la galería automática
+imagenes:
+  - src: "/images/catedral.jpg"
+    alt: "Catedral de Tuy"
+    resena: "La luz del sol golpeaba las piedras milenarias."
 ---
+import ImageCard from '../../components/ImageCard.astro';
+
+# ¡Comenzamos la aventura!
+
+Hoy salimos de la Catedral de Tuy. Aquí te dejo una de las mejores vistas:
+
+<ImageCard 
+  src={frontmatter.imagenes[0].src} 
+  alt={frontmatter.imagenes[0].alt}
+  description="Plaza de la Catedral, Tuy"
+  review={frontmatter.imagenes[0].resena}
+/>
 
 # ¡Comenzamos la aventura!
 

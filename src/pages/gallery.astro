@@ -1,0 +1,102 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import NavBar from '../components/NavBar.astro';
+
+// Obtenemos todos los posts de la carpeta blog [cite: 1]
+const posts = await Astro.glob('./blog/*.{md,mdx}');
+
+const todasLasFotos = posts
+  .filter(post => post.frontmatter.imagenes)
+  .flatMap(post => post.frontmatter.imagenes);
+---
+
+<MainLayout title="Galería">
+  <NavBar /> 
+  
+  <section class="galeria-container">
+    <h1>Galería del Camino</h1>
+    <div class="grid">
+      {todasLasFotos.map((foto, index) => (
+        <a 
+          href={foto.src} 
+          class="glightbox gallery-link" 
+          data-glightbox={`title: ${foto.alt}; description: ${foto.resena}`}
+          style={`animation-delay: ${index * 0.1}s`} 
+        >
+          <img src={foto.src} alt={foto.alt} loading="lazy" />
+          <div class="overlay-info">
+            <span>Ver más grande 🔍</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  import GLightbox from 'glightbox';
+  import 'glightbox/dist/css/glightbox.min.css';
+
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    closeButton: true,
+    touchNavigation: true,
+    loop: true
+  });
+</script>
+
+<style>
+  .galeria-container { padding: 8rem 2rem; max-width: 1200px; margin: 0 auto; }
+  h1 { text-align: center; color: var(--dark-green); margin-bottom: 3rem; }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Efecto Fade-in para las imágenes  */
+  .gallery-link {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08); [cite: 8]
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .grid img { 
+    width: 100%; height: 250px; object-fit: cover; display: block;
+  }
+
+  /* Estilos para que la "X" sea visible */
+  :global(.gclose) {
+    background-color: #2d5a27 !important; /* Tu color var(--dark-green) */
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    opacity: 1 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+  :global(.gclose svg path) {
+    fill: white !important; /* La cruz en blanco */
+  }
+
+  .overlay-info {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: white; opacity: 0; transition: opacity 0.3s;
+  }
+
+  .gallery-link:hover .overlay-info { opacity: 1; }
+</style>

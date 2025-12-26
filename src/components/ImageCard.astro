@@ -1,0 +1,107 @@
+---
+// src/components/ImageCard.astro
+const { src, alt, description, review } = Astro.props;
+---
+
+<figure class="image-card-container">
+  <a href={src} class="glightbox" data-glightbox={`title: ${description}; description: ${review}`}>
+    <div class="image-wrapper">
+      <img src={src} alt={alt} loading="lazy" />
+      <div class="overlay"><span>Ver más grande 🔍</span></div>
+    </div>
+  </a>
+  <figcaption class="image-info">
+    <p class="description"><strong>📍 Ubicación:</strong> {description}</p>
+    <blockquote class="review">"{review}"</blockquote>
+  </figcaption>
+</figure>
+
+<script>
+  import GLightbox from 'glightbox';
+  import 'glightbox/dist/css/glightbox.min.css';
+
+  // Inicialización para que funcione dentro de los posts
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    closeButton: true,
+    touchNavigation: true,
+    loop: true
+  });
+</script>
+
+<style>
+  /* Efecto Fade-in para la tarjeta al cargar el post */
+  .image-card-container {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    border-left: 6px solid var(--light-green);
+    margin: 2.5rem 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    animation: fadeInCard 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .image-wrapper {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .image-wrapper:hover img {
+    transform: scale(1.05);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+    font-weight: bold;
+  }
+
+  .image-wrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .image-info { padding: 1.5rem; }
+  .description { color: var(--dark-green); margin-bottom: 0.5rem; }
+  .review { font-style: italic; color: #555; margin: 0; border-left: 3px solid #eee; padding-left: 1rem; }
+
+  /* --- SOLUCIÓN PARA LA X DE CIERRE --- */
+  /* Usamos :global para que afecte a la interfaz de la librería que está fuera del componente */
+  :global(.gclose) {
+    background-color: #2d5a27 !important; /* Tu verde oscuro */
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% !important;
+    opacity: 1 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4) !important;
+    top: 20px !important;
+    right: 20px !important;
+  }
+
+  :global(.gclose svg path) {
+    fill: white !important; /* Cruz blanca */
+  }
+</style>
