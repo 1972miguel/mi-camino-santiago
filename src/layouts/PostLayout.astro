@@ -1,0 +1,94 @@
+---
+// src/layouts/PostLayout.astro
+import MainLayout from './MainLayout.astro';
+import NavBar from '../components/NavBar.astro';
+
+// Obtenemos las propiedades del frontmatter del archivo .md
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout title={frontmatter.title}>
+  <NavBar client:visible />
+  
+  <article class="post-container">
+    <header class="post-header">
+      <h1>{frontmatter.title}</h1>
+      <p class="post-date">{frontmatter.dateFormatted}</p>
+      <img src={frontmatter.image} alt={frontmatter.title} class="hero-image" />
+    </header>
+
+    <div class="markdown-content">
+      <slot />
+    </div>
+  </article>
+</MainLayout>
+
+<style>
+  .post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+/* 1. El título principal (el que viene del frontmatter) */
+  .post-header h1 {
+    /* font-size: 2.5rem;  */
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    color: var(--dark-green);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ... otros estilos ... */
+
+  /* 2. El título dentro del contenido Markdown (el que escribes con #) */
+
+
+  .post-date {
+    color: var(--dark-green);
+    font-weight: bold;
+    /* font-size: 1.2rem; */
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+  }
+
+  /* ESTILOS PARA EL CONTENIDO DEL MARKDOWN */
+  /* Usamos el selector .markdown-content seguido del elemento para dar estilo */
+    .markdown-content :global(h1) {
+    color: var(--dark-green);
+    /* font-size: 1.8rem; */
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+
+  .markdown-content :global(p) {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1.5rem;
+    /* font-size: 1.4rem; */
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.4rem);
+  }
+
+  .markdown-content :global(h3) {
+    color: var(--light-green);
+    border-bottom: 2px solid var(--light-green);
+    display: inline-block;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .markdown-content :global(ul) {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-content :global(li) {
+    margin-bottom: 0.5rem;
+    list-style: disc;
+  }
+</style>
