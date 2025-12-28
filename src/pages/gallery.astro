@@ -2,6 +2,7 @@
 // src/pages/gallery.astro
 import MainLayout from '../layouts/MainLayout.astro';
 import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
 
 // Path correcto relativo desde src/pages/gallery.astro
 const modules = import.meta.glob('./blog/*.{md,mdx}', { eager: true });
@@ -48,6 +49,7 @@ const todasLasFotos = posts
       )}
     </div>
   </section>
+  <Footer />
 </MainLayout>
 
 <script>

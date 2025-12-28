@@ -1,0 +1,60 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="footer">
+  <div class="container">
+    <p class="authors">Hecho con ❤️ por Yaiza y Miguel</p>
+    <p class="details">Camino de Santiago Portugués · 2 al 7 de enero de 2026</p>
+    <p class="buen-camino">¡Buen Camino! 🥾🌿</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--dark-green);
+    color: var(--white);
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    margin-top: 8rem;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .authors {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+  }
+
+  .details {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  .buen-camino {
+    font-size: 2rem;
+    font-weight: 700;
+    opacity: 0.95;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 3rem 1.5rem;
+      margin-top: 6rem;
+    }
+
+    .authors {
+      font-size: 1.2rem;
+    }
+
+    .buen-camino {
+      font-size: 1.8rem;
+    }
+  }
+</style>

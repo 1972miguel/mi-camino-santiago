@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import NavBar from '../components/NavBar.astro';
+import Footer from "../components/Footer.astro"
 
 // 1. Obtenemos todos los posts (md y mdx)
 const posts = await Astro.glob('./blog/*.{md,mdx}');
@@ -28,6 +29,7 @@ const allImages = posts.map(post => {
       ))}
     </div>
   </section>
+  <Footer />
 </MainLayout>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.min.js"></script>
