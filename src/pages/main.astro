@@ -112,7 +112,7 @@ import NavBar from '../components/NavBar.astro';
   }
 
   .timeline-section {
-    padding: 6rem 0;
+    padding: 8rem 0;
     background: var(--white);
   }
 
@@ -208,6 +208,12 @@ import NavBar from '../components/NavBar.astro';
     line-height: 1.9;
   }
 
+  h1 { 
+    color: var(--dark-green); 
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  
   /* Alternar lados en escritorio grande */
   @media (min-width: 992px) {
     .timeline {

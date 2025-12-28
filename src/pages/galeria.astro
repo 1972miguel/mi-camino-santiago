@@ -10,10 +10,9 @@ const allImages = posts.map(post => {
   return post.frontmatter.gallery || []; // Si el post tiene galería, la trae
 }).flat(); // Aplana los arrays para tener una lista limpia de fotos
 ---
-
+<NavBar transparent />
 <MainLayout title="Galería del Camino">
-  <NavBar client:visible />
-
+  
   <section class="gallery-section">
     <h1>Galería Fotográfica</h1>
     <p>Todos los momentos de nuestra aventura</p>
@@ -73,4 +72,9 @@ const allImages = posts.map(post => {
   }
 
   .gallery-item:hover .caption { opacity: 1; }
+   .gallery-container > h1 { 
+    color: var(--dark-green); 
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
 </style>
