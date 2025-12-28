@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+# Imágenes optimizadas (solo si usamos Astro <Image>)
+# src/assets/images/

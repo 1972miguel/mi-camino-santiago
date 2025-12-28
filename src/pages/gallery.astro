@@ -1,34 +1,51 @@
 ---
+// src/pages/gallery.astro
 import MainLayout from '../layouts/MainLayout.astro';
 import NavBar from '../components/NavBar.astro';
 
-// Obtenemos todos los posts de la carpeta blog [cite: 1]
-const posts = await Astro.glob('./blog/*.{md,mdx}');
+// Path correcto relativo desde src/pages/gallery.astro
+const modules = import.meta.glob('./blog/*.{md,mdx}', { eager: true });
+
+const posts = Object.values(modules);
 
 const todasLasFotos = posts
-  .filter(post => post.frontmatter.imagenes)
-  .flatMap(post => post.frontmatter.imagenes);
+  .filter((post: any) => post.frontmatter?.imagenes)
+  .flatMap((post: any) => post.frontmatter.imagenes || []);
 ---
 
-<MainLayout title="Galería">
-  <NavBar /> 
-  
+<MainLayout title="Galería del Camino">
+  <NavBar />
+
   <section class="galeria-container">
     <h1>Galería del Camino</h1>
+    <p class="intro">Momentos capturados por Yaiza y Miguel durante el Camino</p>
+
     <div class="grid">
-      {todasLasFotos.map((foto, index) => (
-        <a 
-          href={foto.src} 
-          class="glightbox gallery-link" 
-          data-glightbox={`title: ${foto.alt}; description: ${foto.resena}`}
-          style={`animation-delay: ${index * 0.1}s`} 
-        >
-          <img src={foto.src} alt={foto.alt} loading="lazy" />
-          <div class="overlay-info">
-            <span>Ver más grande 🔍</span>
-          </div>
-        </a>
-      ))}
+      {todasLasFotos.length === 0 ? (
+        <p style="grid-column: 1 / -1; text-align: center; font-size: 1.4rem; color: #666;">
+          Pronto subiremos las primeras fotos del Camino 🥾📸
+        </p>
+      ) : (
+        todasLasFotos.map((foto, index) => (
+          <a 
+            href={foto.src} 
+            class="glightbox gallery-link" 
+            data-glightbox={`title: ${foto.alt}; description: ${foto.resena || ''}`}
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <img 
+              src={foto.src} 
+              alt={foto.alt} 
+              loading="lazy"
+              width="600"
+              height="400"
+            />
+            <div class="overlay-info">
+              <span>Ver grande 🔍</span>
+            </div>
+          </a>
+        ))
+      )}
     </div>
   </section>
 </MainLayout>
@@ -37,66 +54,97 @@ const todasLasFotos = posts
   import GLightbox from 'glightbox';
   import 'glightbox/dist/css/glightbox.min.css';
 
-  const lightbox = GLightbox({
+  GLightbox({
     selector: '.glightbox',
-    closeButton: true,
     touchNavigation: true,
-    loop: true
+    loop: true,
+    autoplayVideos: true
   });
 </script>
 
 <style>
-  .galeria-container { padding: 8rem 2rem; max-width: 1200px; margin: 0 auto; }
-  h1 { text-align: center; color: var(--dark-green); margin-bottom: 3rem; }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+  .galeria-container {
+    padding: 8rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
-  /* Efecto Fade-in para las imágenes  */
+  h1 {
+    text-align: center;
+    color: var(--dark-green);
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--dark-green);
+    margin-bottom: 4rem;
+    opacity: 0.9;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
   .gallery-link {
     opacity: 0;
     animation: fadeIn 0.8s ease-out forwards;
     position: relative;
-    border-radius: 15px;
+    border-radius: 18px;
     overflow: hidden;
     display: block;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08); [cite: 8]
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-link:hover {
+    transform: translateY(-10px);
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .grid img { 
-    width: 100%; height: 250px; object-fit: cover; display: block;
-  }
-
-  /* Estilos para que la "X" sea visible */
-  :global(.gclose) {
-    background-color: #2d5a27 !important; /* Tu color var(--dark-green) */
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 50% !important;
-    opacity: 1 !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  }
-
-  :global(.gclose svg path) {
-    fill: white !important; /* La cruz en blanco */
+  .gallery-link img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
   }
 
   .overlay-info {
-    position: absolute; inset: 0; background: rgba(0,0,0,0.3);
-    display: flex; align-items: center; justify-content: center;
-    color: white; opacity: 0; transition: opacity 0.3s;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(4,57,21,0.8), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 2rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
 
-  .gallery-link:hover .overlay-info { opacity: 1; }
+  .gallery-link:hover .overlay-info {
+    opacity: 1;
+  }
+
+  /* Botón cerrar GLightbox */
+  :global(.gclose) {
+    background: var(--dark-green) !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    opacity: 0.9 !important;
+  }
+
+  :global(.gclose svg path) {
+    fill: white !important;
+  }
 </style>
