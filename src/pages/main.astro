@@ -70,6 +70,139 @@ import Footer from "../components/Footer.astro"
       </div>
     </div>
   </section>
+  <div class="map-container" id="map"></div>
+
+<script>
+// @ts-nocheck  // Evita warnings de TypeScript
+
+import L from 'leaflet';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const map = L.map('map').setView([42.3, -8.6] as L.LatLngTuple, 9);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Ruta aproximada
+  const route: L.LatLngTuple[] = [
+    [42.0475, -8.6444],
+    [42.1616, -8.6199],
+    [42.2836, -8.6093],
+    [42.4315, -8.6446],
+    [42.6037, -8.6418],
+    [42.7386, -8.6604],
+    [42.8804, -8.5457]
+  ];
+
+  L.polyline(route, { color: '#B0CE88', weight: 6, opacity: 0.8 }).addTo(map);
+
+  // === TUS PUNTOS AQUÍ ===
+  const puntos = [
+    {
+      coords: [42.0475, -8.6444] as L.LatLngTuple, //SALIDA TUY  /////////////////////////
+     // icon: '/icons/concha.png',
+      title: 'Inicio: Catedral de Tui',
+      desc: '2 Ene - Salida oficial',
+      foto: '/images/catedral.jpg'
+    },
+    {
+      coords: [42.1616, -8.6199] as L.LatLngTuple,  // PORRIÑO  //////////////////////////////
+      //icon: '/icons/concha.png',
+      title: 'Etapa 1: O Porriño',
+      desc: 'Fin del primer día',
+      foto: '/images/porrino-iglesia.avif'
+    },
+    {
+      coords: [42.2836, -8.6093] as L.LatLngTuple, // REDONDELA   //////////////////////////
+     // icon: '/icons/concha.png',
+      title: 'Etapa 2: Redondela',
+      desc: '3 Ene - Vistas increíbles',
+      foto: null
+    },
+    {
+      coords: [42.4315, -8.6446] as L.LatLngTuple, //PONTEVEDRA ////////////////////////////
+      //icon: '/icons/concha.png',
+      title: 'Etapa 3: Pontevedra',
+      desc: '4 Ene - Casco histórico',
+      foto: null
+    },
+    {
+      coords: [42.6037, -8.6418] as L.LatLngTuple, //CALDAS ///////////////////////////
+     // icon: '/icons/concha.png',
+      title: 'Etapa 4: Caldas de Reis',
+      desc: '5 Ene - Termas',
+      foto: null
+    },
+    {
+      coords: [42.7386, -8.6604] as L.LatLngTuple, // PADRON  /////////////////////////////////
+      //icon: '/icons/concha.png',
+      title: 'Etapa 5: Padrón',
+      desc: '6 Ene - Leyenda del pedrón',
+      foto: null
+    },
+    {
+      coords: [42.8804, -8.5457] as L.LatLngTuple, //SANTIAGO    //////////////////////////////////
+      //icon: '/icons/concha.png',
+      title: 'Llegada: Santiago',
+      desc: '7 Ene - ¡Obradoiro!',
+      foto: null
+    }
+  ];
+
+  const markers = puntos.map(punto => {
+    let customIcon;
+
+    if (punto.icon) {
+      customIcon = L.icon({
+        iconUrl: punto.icon,
+        iconSize: [38, 38],
+        iconAnchor: [19, 38],
+        popupAnchor: [0, -38]
+      });
+    }
+
+    const popupContent = punto.foto 
+      ? `
+        <div style="text-align:center; min-width:220px;"> 
+          <strong style="color:#043915;">${punto.title}</strong><br>
+          <small>${punto.desc}</small>
+          <br><br>
+          <img src="${punto.foto}" alt="${punto.title}" style="width:100%; max-width:300px; border-radius:12px;">
+        </div>
+      `
+      : `
+        <div style="text-align:center;">
+          <strong style="color:#043915;">${punto.title}</strong><br>
+          <small>${punto.desc}</small>
+        </div>
+      `;
+
+    return L.marker(punto.coords, punto.icon ? { icon: customIcon } : {})
+      .addTo(map)
+      .bindPopup(popupContent);
+  });
+
+  const group = L.featureGroup(markers);
+  map.fitBounds(group.getBounds().pad(0.2));
+});
+</script>
+<style>
+  .map-container {
+    height: 500px;
+    width: 80%;
+    margin: 4rem auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 768px) {
+    .map-container {
+      height: 400px;
+    }
+  }
+</style>
   <Footer />
 </MainLayout>
 
@@ -114,7 +247,7 @@ import Footer from "../components/Footer.astro"
   }
 
   .timeline-section {
-    padding: 8rem 0;
+    padding: 8rem 0 0;
     background: var(--white);
   }
 
