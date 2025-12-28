@@ -1,0 +1,29 @@
+---
+const { src, titulo, resena } = Astro.props;
+---
+<figure class="video-card">
+  <video controls preload="metadata" class="video-player">
+    <source src={src} type="video/mp4" />
+  </video>
+  <figcaption class="info">
+    <p><strong>🎥 {titulo}</strong></p>
+    <p><em>"{resena}"</em></p>
+  </figcaption>
+</figure>
+
+<style>
+  .video-card {
+    background: #fff;
+    border-radius: 15px;
+    border-left: 6px solid var(--light-green);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    margin: 3rem 0;
+    overflow: hidden;
+  }
+  .video-player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .info { padding: 1.5rem; }
+</style>

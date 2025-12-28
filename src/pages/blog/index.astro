@@ -90,4 +90,23 @@ posts.sort((a, b) => {
     color: #444;
     line-height: 1.7;
   }
+  @media (max-width: 600px) {
+    .blog-section {
+      padding: 4rem 1rem;
+    }
+
+    .post-card {
+      padding: 1.5rem; /* Menos espacio interno en móvil */
+      border-left-width: 4px; /* Borde un poco más fino */
+    }
+
+    .post-card h2 {
+      font-size: 1.4rem;
+    }
+
+    .intro {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+  }
 </style>

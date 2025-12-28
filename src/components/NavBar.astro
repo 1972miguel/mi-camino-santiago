@@ -5,9 +5,10 @@
 <header class="navbar">
   <div class="container">
     <a href="/main" class="logo">Camino 2026</a>
-    <nav>
+    <nav class="nav-links">
       <a href="/blog" class="nav-link">Blog</a>
       <a href="/gallery" class="nav-link">Galería</a>
+      <a href="/vblog" class="nav-link">VBlog</a> </nav>
     </nav>
   </div>
 </header>
@@ -16,7 +17,7 @@
   .navbar {
     background: var(--dark-green);
     color: var(--white);
-    padding: 1.2rem 0;
+    padding: 1rem 0; /* Un poco más compacto */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -26,31 +27,66 @@
   .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem; /* Ajuste de padding para móviles */
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .logo {
-    font-size: 2.2rem;
+    font-size: 1.8rem; /* Tamaño base reducido para evitar desbordes */
     font-weight: 700;
     color: var(--white);
     text-decoration: none;
+    transition: font-size 0.3s ease;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
   }
 
   .nav-link {
     color: var(--white);
-    margin-left: 3rem;
+    margin-left: 1.5rem; /* Margen reducido para pantallas medianas */
     font-weight: 600;
-    font-size: 1.2rem;
-    padding: 0.6rem 1.2rem;
+    font-size: 1.1rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 8px;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
   }
 
   .nav-link:hover {
     background: rgba(255,255,255,0.18);
+  }
+
+  /* --- AJUSTES PARA SMARTPHONES --- */
+  @media (max-width: 600px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .logo {
+      font-size: 1.4rem; /* Logo más pequeño en móvil */
+    }
+
+    .nav-link {
+      margin-left: 0.5rem; /* Mínimo espacio entre enlaces */
+      font-size: 0.95rem; /* Texto más pequeño para que quepa todo en una línea */
+      padding: 0.4rem 0.6rem;
+    }
+  }
+
+  /* Para pantallas muy pequeñas (iPhone SE, etc.) */
+  @media (max-width: 380px) {
+    .logo {
+      font-size: 1.2rem;
+    }
+    
+    .nav-link {
+      padding: 0.3rem 0.5rem;
+      font-size: 0.85rem;
+    }
   }
 </style>
