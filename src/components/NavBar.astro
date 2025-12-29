@@ -5,12 +5,21 @@
 <header class="navbar">
   <div class="container">
     <a href="/" class="logo">Camino 2026</a>
-    <nav>
+
+    <!-- Menú siempre visible en escritorio, oculto en móvil -->
+    <nav class="nav-links">
       <a href="/main" class="nav-link">Ruta</a>
       <a href="/blog" class="nav-link">Blog</a>
       <a href="/gallery" class="nav-link">Galería</a>
       <a href="/vblog" class="nav-link">VBlog</a>
     </nav>
+
+    <!-- Botón hamburguesa solo en móvil -->
+    <button class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
@@ -18,7 +27,7 @@
   .navbar {
     background: var(--dark-green);
     color: var(--white);
-    padding: 0.9rem 0;              /* Reducido de 1.4rem → más compacta */
+    padding: 1rem 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -37,17 +46,22 @@
   }
 
   .logo {
-    font-size: 2rem;                /* Reducido de 2.4rem → más equilibrado */
+    font-size: 2rem;
     font-weight: 700;
     color: var(--white);
     text-decoration: none;
   }
 
+  /* Enlaces normales (escritorio) */
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
   .nav-link {
     color: var(--white);
-    margin-left: 2rem;              /* Reducido un poco para que quepa mejor */
     font-weight: 600;
-    font-size: 1.1rem;              /* Reducido de 1.2rem → más fino */
+    font-size: 1.1rem;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     text-decoration: none;
@@ -58,20 +72,79 @@
     background: rgba(255,255,255,0.2);
   }
 
-  /* En móvil: aún más compacto */
+  /* Hamburguesa (solo visible en móvil) */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .hamburger span {
+    width: 30px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  /* Estado activo hamburguesa */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -8px);
+  }
+
+  /* RESPONSIVO */
   @media (max-width: 768px) {
-    .navbar {
-      padding: 0.7rem 0;
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--dark-green);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    .logo {
-      font-size: 1.8rem;
+    .nav-links.active {
+      display: flex;
+    }
+
+    .hamburger {
+      display: flex;
     }
 
     .nav-link {
-      margin-left: 1.2rem;
-      font-size: 1rem;
-      padding: 0.4rem 0.8rem;
+      font-size: 1.3rem;
+      padding: 1rem 0;
+      text-align: center;
     }
   }
 </style>
+
+<script>
+  // Toggle menú móvil
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !expanded);
+    });
+  }
+</script>

@@ -59,3 +59,14 @@ button, .btn {
 button:hover, .btn:hover {
   background-color: #065024;
 }
+
+/* Solo páginas internas tienen padding-top por navbar fija */
+main, .main-container, .timeline-section, .galeria-container, .blog-section, .vblog-section {
+  padding-top: 90px; /* Ajusta según altura de tu navbar */
+}
+
+/* La landing NO tiene padding-top */
+html:has(.hero) body,
+.landing body {
+  padding-top: 0 !important;
+}
