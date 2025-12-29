@@ -1,43 +1,54 @@
-# Astro Starter Kit: Minimal
+# Camino de Santiago 2026 🥾🌿
 
-```sh
-npm create astro@latest -- --template minimal
-```
+**Diario personal del Camino de Santiago Portugués desde Tui**  
+**Yaiza y Miguel · 2 al 7 de enero de 2026**
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## 🚀 Project Structure
+## 🌟 Sobre este proyecto
 
-Inside of your Astro project, you'll see the following folders and files:
+Este es el diario digital de nuestra peregrinación por el **Camino de Santiago Portugués** desde **Tui** hasta **Santiago de Compostela** en 6 etapas.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Aquí compartiremos día a día:
+- Nuestras experiencias y emociones
+- Fotos y vídeos de los paisajes, albergues y momentos especiales
+- La evolución de la ruta en un mapa interactivo
+- Anécdotas, reflexiones y todo lo que el Camino nos regale
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+¡Bienvenidos a nuestra aventura!
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+[Visitar el diario →](https://mi-camino-santiago.vercel.app)
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🗺️ La ruta
 
-## 🧞 Commands
+- **Etapa 1**: Tui → O Porriño (2 ene)
+- **Etapa 2**: O Porriño → Redondela (3 ene)
+- **Etapa 3**: Redondela → Pontevedra (4 ene)
+- **Etapa 4**: Pontevedra → Caldas de Reis (5 ene)
+- **Etapa 5**: Caldas de Reis → Padrón (6 ene)
+- **Etapa 6**: Padrón → Santiago de Compostela (7 ene)
 
-All commands are run from the root of the project, from a terminal:
+**¡Llegada a la Plaza del Obradoiro el 7 de enero!** 🏆🐚
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🚀 Tecnologías usadas
 
-## 👀 Want to learn more?
+- **[Astro](https://astro.build)** – Framework ultrarrápido y moderno
+- **Vercel** – Despliegue instantáneo y global
+- **Leaflet** – Mapa interactivo con nuestra ruta
+- **GLightbox** – Galería de fotos elegante
+- **Markdown** – Posts del blog fáciles de escribir desde cualquier lugar
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## ❤️ Hecho con
+
+- Mucha ilusión
+- Amor por el Camino
+- Y unas cuantas ampollas (próximamente 😅)
+
+## ¡Buen Camino!
+
+> “El Camino no es solo caminar, es sentir, compartir y crecer.”
+
+**¡Ultreia et suseia!**
+
+---
+
+**Yaiza & Miguel** · Enero 2026
