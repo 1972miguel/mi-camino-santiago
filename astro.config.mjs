@@ -1,11 +1,38 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import mdx from "@astrojs/mdx";
+import pwa from "@vite-pwa/astro";
 
-import mdx from '@astrojs/mdx';
-
-// https://astro.build/config
 export default defineConfig({
-  // Cambia esto cuando tengas tu dominio o deja así por ahora
-  site: 'https://mi-camino-santiago.vercel.app',
-
-  integrations: [mdx()]
+  site: "https://mi-camino-santiago.vercel.app",
+  integrations: [
+    mdx(),
+    pwa({
+      registerType: "autoUpdate",
+      manifest: {
+        name: "Camino de Santiago 2026 - Yaiza y Miguel",
+        short_name: "Camino 2026",
+        description: "Diario del Camino Portugués desde Tui en 6 etapas",
+        theme_color: "#043915",
+        background_color: "#FFFFFF",
+        display: "standalone",
+        icons: [
+          {
+            src: "/icons/favicon-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+          {
+            src: "/icons/favicon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ],
+      },
+      workbox: {
+        navigateFallback: "/404.html", // opcional, para SPA-like navigation
+      },
+    }),
+  ],
 });
