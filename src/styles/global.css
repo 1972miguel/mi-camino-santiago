@@ -1,9 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+}
 
 :root {
   --dark-green: #043915;
-  --light-green: #B0CE88;
-  --white: #FFFFFF;
+  --light-green: #b0ce88;
+  --white: #ffffff;
   --text-dark: #1a1a1a;
 }
 
@@ -18,14 +36,16 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background-color: var(--white);
   color: var(--text-dark);
   line-height: 1.6;
   font-size: clamp(1.125rem, 1.25vw + 0.875rem, 1.5rem);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: 700;
   color: var(--dark-green);
   line-height: 1.2;
@@ -44,7 +64,8 @@ a {
   text-decoration: none;
 }
 
-button, .btn {
+button,
+.btn {
   background-color: var(--dark-green);
   color: var(--white);
   padding: 1rem 2rem;
@@ -56,12 +77,18 @@ button, .btn {
   transition: background-color 0.3s ease;
 }
 
-button:hover, .btn:hover {
+button:hover,
+.btn:hover {
   background-color: #065024;
 }
 
 /* Solo páginas internas tienen padding-top por navbar fija */
-main, .main-container, .timeline-section, .galeria-container, .blog-section, .vblog-section {
+main,
+.main-container,
+.timeline-section,
+.galeria-container,
+.blog-section,
+.vblog-section {
   padding-top: 90px; /* Ajusta según altura de tu navbar */
 }
 

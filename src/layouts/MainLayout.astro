@@ -19,7 +19,8 @@ import '../styles/global.css';
     <link rel="manifest" href="/manifest.json">
     <meta name="google-site-verification" content="hI7BR4K-L5KWjmH2yaouJi0X7xLDEw6xmmhx5j6Ibu8" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"></noscript>
     <link rel="icon" href="/icons/logo.svg" type="image/svg+xml">
     <link rel="icon" href="/icons/favicon.ico" sizes="any" />
 
