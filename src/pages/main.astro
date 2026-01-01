@@ -85,17 +85,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }).addTo(map);
 
   // Ruta aproximada
-  const route: L.LatLngTuple[] = [
+const route: L.LatLngTuple[] = [
     [42.0475, -8.6444],
+    [42.1000, -8.6300],
     [42.1616, -8.6199],
+    [42.2200, -8.6150],
     [42.2836, -8.6093],
+    [42.3400, -8.6200],
     [42.4315, -8.6446],
+    [42.5000, -8.6600],
     [42.6037, -8.6418],
+    [42.6700, -8.6500],
     [42.7386, -8.6604],
+    [42.8000, -8.6000],
+    [42.8500, -8.5700],
     [42.8804, -8.5457]
   ];
 
-  L.polyline(route, { color: '#B0CE88', weight: 6, opacity: 0.8 }).addTo(map);
+  L.polyline(route, { color: '#043915', weight: 6, opacity: 0.8 }).addTo(map);
 
   // === TUS PUNTOS AQUÍ ===
   const puntos = [
@@ -111,42 +118,42 @@ document.addEventListener('DOMContentLoaded', () => {
       //icon: '/icons/concha.png',
       title: 'Etapa 1: O Porriño',
       desc: 'Fin del primer día',
-      foto: '/images/porrino-iglesia.avif'
+      foto: '/images/porrino.webp'
     },
     {
       coords: [42.2836, -8.6093] as L.LatLngTuple, // REDONDELA   //////////////////////////
      // icon: '/icons/concha.png',
       title: 'Etapa 2: Redondela',
       desc: '3 Ene - Vistas increíbles',
-      foto: null
+      foto: '/images/redondela.webp'
     },
     {
       coords: [42.4315, -8.6446] as L.LatLngTuple, //PONTEVEDRA ////////////////////////////
       //icon: '/icons/concha.png',
       title: 'Etapa 3: Pontevedra',
       desc: '4 Ene - Casco histórico',
-      foto: null
+      foto: '/images/pontevedra.jpg'
     },
     {
       coords: [42.6037, -8.6418] as L.LatLngTuple, //CALDAS ///////////////////////////
      // icon: '/icons/concha.png',
       title: 'Etapa 4: Caldas de Reis',
       desc: '5 Ene - Termas',
-      foto: null
+      foto: '/images/caldas.jpg'
     },
     {
       coords: [42.7386, -8.6604] as L.LatLngTuple, // PADRON  /////////////////////////////////
       //icon: '/icons/concha.png',
       title: 'Etapa 5: Padrón',
       desc: '6 Ene - Leyenda del pedrón',
-      foto: null
+      foto: '/images/padron.jpg'
     },
     {
       coords: [42.8804, -8.5457] as L.LatLngTuple, //SANTIAGO    //////////////////////////////////
       //icon: '/icons/concha.png',
       title: 'Llegada: Santiago',
       desc: '7 Ene - ¡Obradoiro!',
-      foto: null
+      foto: '/images/santiago.jpg'
     }
   ];
 
