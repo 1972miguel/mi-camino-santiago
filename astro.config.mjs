@@ -7,8 +7,9 @@ export default defineConfig({
   integrations: [
     mdx(),
     pwa({
+      mode: "production",
       registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "favicon.ico", "icons/*.png"], // cachea iconos
+      includeAssets: ["favicon.ico", "icons/*.png", "fonts/*.woff2"], // cachea iconos y fuentes
       manifest: {
         name: "Camino de Santiago 2026 - Yaiza y Miguel",
         short_name: "Camino 2026",
@@ -18,6 +19,7 @@ export default defineConfig({
         display: "standalone",
         scope: "/",
         start_url: "/",
+        orientation: "portrait",
         icons: [
           {
             src: "/icons/favicon-192x192.png",
@@ -34,12 +36,19 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg,webp,avif}"], // cachea todo
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg,webp,avif,woff2}"], // cachea todo lo importante
         navigateFallback: "/404.html",
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.mode === "navigate",
             handler: "NetworkFirst",
+            options: {
+              cacheName: "pages-cache",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 días
+              },
+            },
           },
         ],
       },
