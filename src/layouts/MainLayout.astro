@@ -23,26 +23,7 @@ import '../styles/global.css';
     <link rel="icon" href="/icons/logo.svg" type="image/svg+xml">
     <link rel="icon" href="/icons/favicon.ico" sizes="any" />
 
-<script>
-  // if ('serviceWorker' in navigator) {
-  //   window.addEventListener('load', () => {
-  //     navigator.serviceWorker.register('/sw.js').then(reg => {
-  //       console.log('Service Worker registered!', reg);
-  //     }).catch(err => {
-  //       console.error('Service Worker registration failed:', err);
-  //     });
-  //   });
-  // }
-  // En tu archivo de entrada (index.js, layout.js o _app.js)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    // Asegúrate de que la ruta sea '/sw.js' (con la barra delante)
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('SW registrado', reg))
-      .catch(err => console.log('Error al registrar SW', err));
-  });
-}
-</script>
+
 <!-- Para Android Chrome -->
 <link rel="icon" href="/icons/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/icons/favicon-16x16.png" sizes="16x16" type="image/png">
@@ -62,5 +43,24 @@ if ('serviceWorker' in navigator) {
     <slot />
 
   </body>
-
+<script is:inline>
+  // if ('serviceWorker' in navigator) {
+  //   window.addEventListener('load', () => {
+  //     navigator.serviceWorker.register('/sw.js').then(reg => {
+  //       console.log('Service Worker registered!', reg);
+  //     }).catch(err => {
+  //       console.error('Service Worker registration failed:', err);
+  //     });
+  //   });
+  // }
+  // En tu archivo de entrada (index.js, layout.js o _app.js)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // Asegúrate de que la ruta sea '/sw.js' (con la barra delante)
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registrado', reg))
+      .catch(err => console.log('Error al registrar SW', err));
+  });
+}
+</script>
 </html>
