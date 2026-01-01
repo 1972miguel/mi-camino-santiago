@@ -3,12 +3,12 @@ layout: "../../layouts/PostLayout.astro"
 title: "Etapa 1: Tuy → O Porriño"
 date: 2026-01-02
 dateFormatted: "2 de enero de 2026"
-description: "El gran día llegó. Salimos de la Catedral de Tuy con mucha emoción y los primeros kilómetros del Camino Portugués."
+description: "El gran día llegó. Salimos de la Catedral de Tui con mucha emoción y los primeros kilómetros del Camino Portugués."
 
 # Lista de imágenes para la galería automática
 imagenes:
   - src: "/images/catedral.jpg"
-    alt: "Catedral de Tuy"
+    alt: "Catedral de Tui"
     resena: "La luz del sol golpeaba las piedras milenarias."
 
 # Lista de videos para la galería automática
@@ -19,17 +19,17 @@ videos:
   - src: "/videos/video2.mp4"
     titulo: "video de prueba"
     resena: "Un momento emocionante al empezar el camino."
-    
 ---
-import ImageCard from '../../components/ImageCard.astro';
-import VideoCard from '../../components/VideoCard.astro';
+
+import ImageCard from "../../components/ImageCard.astro";
+import VideoCard from "../../components/VideoCard.astro";
 
 # ¡Comenzamos la aventura!
 
-Hoy salimos de la Catedral de Tuy. Aquí te dejo una de las mejores vistas:
+Hoy salimos de la Catedral de Tui. Aquí te dejo una de las mejores vistas:
 
-<ImageCard 
-  src={frontmatter.imagenes[0].src} 
+<ImageCard
+  src={frontmatter.imagenes[0].src}
   alt={frontmatter.imagenes[0].alt}
   description="Plaza de la Catedral, Tuy"
   review={frontmatter.imagenes[0].resena}
@@ -42,20 +42,22 @@ Hoy, 2 de enero de 2026, Yaiza y Miguel dimos el primer paso oficial del Camino 
 El día empezó con niebla gallega típica, pero pronto salió el sol y nos acompañó durante gran parte de la etapa.
 
 ### Momentos destacados:
+
 - La salida junto al río Miño
 - El sello en el pasaporte peregrino
 - Las primeras flechas amarillas
 - Llegada a O Porriño con las piernas cansadas pero el corazón lleno
 
 ### Video de prueba
-<VideoCard 
-  src={frontmatter.videos[0].src} 
+
+<VideoCard
+  src={frontmatter.videos[0].src}
   titulo={frontmatter.videos[0].titulo}
   resena={frontmatter.videos[0].resena}
 />
 ¡Primer día superado! Mañana toca madrugar para la etapa 2.
-<VideoCard 
-  src={frontmatter.videos[1].src} 
+<VideoCard
+  src={frontmatter.videos[1].src}
   titulo={frontmatter.videos[1].titulo}
   resena={frontmatter.videos[1].resena}
 />
