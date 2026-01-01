@@ -8,6 +8,7 @@ export default defineConfig({
     mdx(),
     pwa({
       registerType: "autoUpdate",
+      includeAssets: ["favicon.svg", "favicon.ico", "icons/*.png"], // cachea iconos
       manifest: {
         name: "Camino de Santiago 2026 - Yaiza y Miguel",
         short_name: "Camino 2026",
@@ -15,6 +16,8 @@ export default defineConfig({
         theme_color: "#043915",
         background_color: "#FFFFFF",
         display: "standalone",
+        scope: "/",
+        start_url: "/",
         icons: [
           {
             src: "/icons/favicon-192x192.png",
@@ -31,7 +34,14 @@ export default defineConfig({
         ],
       },
       workbox: {
-        navigateFallback: "/404.html", // opcional, para SPA-like navigation
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg,webp,avif}"], // cachea todo
+        navigateFallback: "/404.html",
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkFirst",
+          },
+        ],
       },
     }),
   ],
