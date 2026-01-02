@@ -11,14 +11,9 @@ imagenes:
     alt: "Catedral de Tui"
     resena: "La luz del sol golpeaba las piedras milenarias."
 
-# Lista de videos para la galería automática
-videos:
-  - src: "/videos/video-prueba.mp4"
-    titulo: "Llegada a la Catedral"
-    resena: "Un momento emocionante al empezar el camino."
-  - src: "/videos/video2.mp4"
-    titulo: "video de prueba"
-    resena: "Un momento emocionante al empezar el camino."
+  - src: "/images/san-telmo.jpg"
+    alt: "Cruz de San Telmo"
+    resena: "Lugar donde el santo dominico Pedro González Telmo."
 ---
 
 import ImageCard from "../../components/ImageCard.astro";
@@ -46,19 +41,13 @@ El día empezó con niebla gallega típica, pero pronto salió el sol y nos acom
 - La salida junto al río Miño
 - El sello en el pasaporte peregrino
 - Las primeras flechas amarillas
-- Llegada a O Porriño con las piernas cansadas pero el corazón lleno
+- Llegada a O Porriño con las piernas cansadas pero el corazón lleno.
 
-### Video de prueba
+<ImageCard
+  src={frontmatter.imagenes[1].src}
+  alt={frontmatter.imagenes[1].alt}
+  description="Lugar donde el santo dominico Pedro González Telmo (San Telmo) enfermó y murió en 1246"
+  review={frontmatter.imagenes[1].resena}
+/>
 
-<VideoCard
-  src={frontmatter.videos[0].src}
-  titulo={frontmatter.videos[0].titulo}
-  resena={frontmatter.videos[0].resena}
-/>
-¡Primer día superado! Mañana toca madrugar para la etapa 2.
-<VideoCard
-  src={frontmatter.videos[1].src}
-  titulo={frontmatter.videos[1].titulo}
-  resena={frontmatter.videos[1].resena}
-/>
 ¡Buen Camino! 🥾🌿
